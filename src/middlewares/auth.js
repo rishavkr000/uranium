@@ -1,22 +1,20 @@
+const jwt = require('jsonwebtoken')
+const mongoose = require('mongoose');
 
-const jwt = require("jsonwebtoken");
-
-
-
-const mid1= function ( req, res, next) {
-    let token = req.headers["x-Auth-token"];
-    if (!token) token = req.headers["x-auth-token"];
-  
-    if (!token) return res.send({ status: false, msg: "token must be present" });
-  
-    console.log(token);
-    
-  
-    let decodedToken = jwt.verify(token, "functionup-thorium");
-    if (!decodedToken)
-      return res.send({ status: false, msg: "token is invalid" });
-    
+const authCheck = async (req, res, next) => {
+    try{
+    let id = req.params.userId
+    if(!mongoose.isValidObjectId(req.params.userId)) return res.send({msg: "Invalid UserId sent in Params"})
+    let token = req.headers['x-Auth-Token'] || req.headers['x-auth-token']
+    if(!token) return res.send({msg: 'Token is required.'}) 
+    let tokenValidity = jwt.verify(token, "Rishav")
+    if(tokenValidity.userId !== id) return res.send({msg: "This user hasn't been Authorised"}) 
     next()
+    }
+    catch(err){
+        console.log(err.message)
+        res.status(500).send({status: false, msg: 'invalid token, unable to verify user. Please re-log in.'}) 
+    }
 }
 
-module.exports.mid1= mid1
+module.exports = {authCheck}
