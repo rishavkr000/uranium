@@ -47,7 +47,7 @@ router.get('/films', function (req, res) {
 });
 
 router.get('/films/:filmId', function (req, res) {
-    const arr2 = [ {
+    const arr = [ {
         'id': 1,
         'name': 'The Shining'
        }, {
@@ -63,14 +63,14 @@ router.get('/films/:filmId', function (req, res) {
     
     let count = 0;
     let a
-    for(let i = 0; i < arr2.length; i++){
-    if(req.params.filmId == arr2[i].id) {
+    for(let i = 0; i < arr.length; i++){
+    if(req.params.filmId == arr[i].id) {
             a = i
             count++;
     }
 } 
     if(count > 0){
-        res.send(arr2[a])
+        res.send(arr[a])
     } else {
         res.send("Movie not found")
     }
