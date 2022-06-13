@@ -31,32 +31,32 @@ let players =
            ]
        },
    ]
+//     router.post('/players', function (req, res) {
+//         let data = req.body;
+//         players.filter(((item) => {
+//             if(item.name === data.name) {
+//                 return res.send({msg : "Player already exist"})
+//         }}));
+//         players.push(data);
+//         return res.send(players);
+//    });
+
+
     router.post('/players', function (req, res) {
-        let data = req.body;
-        players.filter(((item) => {
-            if(item.name === data.name) {
-                return res.send({msg : "Player already exist"})
-        }}));
-        players.push(data);
-        return res.send(players);
-        console.log(players);
-   });
-
-
-   //     router.post('/players', function (req, res) {
-//     //LOGIC WILL COME HERE
-//     let data= req.body;
-//     console.log(data)
-//     for(let i = 0; i < players.length; i++) {
-//         if(data !== players[i].name){
-//             players.push(data)
-//         }else{
-//             console.log("Player already exist")
-//         }
-//     }
-//     console.log(players)
-//     res.send(  { data: players , status: true }  )
-// });
+    //LOGIC WILL COME HERE
+    let data= req.body;
+    console.log(data)
+    for(let i in players) {
+        if(data.name !== players.name){
+            players.push(data)
+            break
+        }else{
+            console.log("Player already exist")
+        }
+    }
+    console.log(players)
+    res.send(  { data: players , status: true }  )
+});
 
 
 const randomController= require("../controllers/randomController.js")
