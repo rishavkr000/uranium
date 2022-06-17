@@ -18,8 +18,8 @@ mongoose.connect("mongodb+srv://functionup-cohort:G0Loxqc9wFEGyEeJ@cluster0.rzot
 //     function (req, res, next) {
 //         console.log ("inside GLOBAL MW");
 //         next();
-//   }
-//   );
+//     }
+// );
 
 app.use('/', route);
 
