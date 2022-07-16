@@ -15,7 +15,6 @@ let getByDistrictId = async function (req, res){
         res.status(200).send({msg: data, status: true})
     }
     catch (err) {
-        console.log(err)
         res.status(500).send({ msg: err.message })
     }
 }
@@ -35,7 +34,6 @@ let weatherReport = async function (req, res) {
         res.status(200).send({Temp: data})
     }
     catch(err){
-        console.log(err)
         res.status(500).send({msg: err.message})
     }
 }
@@ -59,7 +57,6 @@ let sortTemperature = async function (req, res) {
         res.status(200).send({msg: sorted})
     }
     catch(err){
-        console.log(err)
         res.status(500).send({msg: err.message})
     }
 }
@@ -81,7 +78,6 @@ let memesCreater = async function (req, res) {
         res.status(200).send({msg: data})
     }
     catch(err){
-        console.log(err)
         res.status(500).send({msg: err.message})
     }
 }
